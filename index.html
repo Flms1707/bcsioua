@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Esfera Mágica</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1a1a1a;
+            margin: 0;
+        }
+
+        /* A mágica da esfera */
+        .esfera {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            
+            /* Efeito 3D inicial (Radial Gradient) */
+            background: radial-gradient(circle at 65% 15%, white 1px, aqua 3%, darkblue 60%, aqua 100%);
+            box-shadow: inset -20px -20px 50px rgba(0,0,0,0.5), 10px 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .esfera:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="esfera" id="esfera"></div>
+
+    <script>
+        const esfera = document.getElementById('esfera');
+
+        // Função para gerar uma cor hexadecimal aleatória
+        function gerarCorAleatoria() {
+            const letras = '0123456789ABCDEF';
+            let cor = '#';
+            for (let i = 0; i < 6; i++) {
+                cor += letras[Math.floor(Math.random() * 16)];
+            }
+            return cor;
+        }
+
+        // Evento de passar o mouse
+        esfera.addEventListener('mouseenter', () => {
+            const novaCor = gerarCorAleatoria();
+            
+            // Atualiza o gradiente para manter o efeito de esfera com a nova cor
+            esfera.style.background = `radial-gradient(circle at 65% 15%, white 1px, ${novaCor} 3%, black 100%)`;
+        });
+    </script>
+</body>
+</html>
